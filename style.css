@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+*, *::before, *::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Lato', sans-serif;
+}
+
+body {
+	background: #999;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	margin: 4rem;
+}
+
+.message-input {
+	font-size: 1rem;
+	padding: .25rem;
+	border-radius: 5px;
+	border: none;
+	margin-bottom: 1rem;
+	transition: .2s all;
+}
+
+.message-input:focus {
+	outline-color: #006fe6;
+	outline-width: 3px;
+	outline-style: solid;
+	font-style: italic;
+	transition: .2s all;
+}
+
+.message-btn {
+	border: none;
+	background: #007bff;
+	color: #eee;
+	font-size: 1rem;
+	font-weight: bold;
+	border-radius: 5px;
+	padding: .5rem;
+	transition: 0.2s all;
+	cursor: pointer;
+}
+
+.message-btn:hover {
+	background: #006fe6;
+	transition: 0.2s all;
+}
