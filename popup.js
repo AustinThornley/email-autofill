@@ -1,25 +1,22 @@
-let messageInput = document.getElementsByClassName('message-input')[0];
-let updateMessageBtn = document.getElementById('message-btn');
+console.log("background running");
+chrome.browserAction.onClicked.addListener(setup);
+let button = select('#message-btn');
 
-updateMessageBtn.addEventListener('click', async(messageInput) => {
-		// Query tab
-    let queryOptions = { active: true, currentWindow: true };
-    let tabs = await chrome.tabs.query(queryOptions);
 
-    // Open up connection
-    const port = chrome.tabs.connect(tabs[0].id, {
-        name: "uiOps",
-    });
+function setup() {
+		button.addEventListener('click', function() {
+			noCanvas();
+			let messageInput = select('#message-input');
+			messageInput.input(sendText);
 
-		port.postMessage({
-			message: messageInput.value
+			function sendText() {
+					let message = messageInput.value();
+					chrome.tabs.query({
+							active: true,
+							currentWindow: true
+					}, function(tabs) {
+							chrome.tabs.sendMessage(tabs[0].id, message);
+					});
+			}
 		});
-
-		    port.onMessage.addListener(function(msg) {
-        if (msg.exists) {
-            alert('Exists');
-        } else {
-            alert("Doesn't exist");
-        }
-    })
-});
+}
